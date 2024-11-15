@@ -1,19 +1,26 @@
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class Dec2HexTest {
-
+    
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    
     @Test
-    public void testValidDecimalConversion() {
-        // Example: Convert 15 to F
-        String result = Dec2Hex.convertToHex(15);
-        assertEquals("F", result);
+    public void testValidInput() {
+        System.setOut(new PrintStream(outContent));
+        Dec2Hex.main(new String[]{"15"});
+        assertTrue(outContent.toString().contains("Hexadecimal representation is: F"));
+        System.setOut(originalOut);
     }
-
+    
     @Test
-    public void testInvalidInput() {
-        // Example: Convert -1 (or handle an invalid case)
-        String result = Dec2Hex.convertToHex(-1);
-        assertEquals("Invalid input", result);
+    public void testLargeNumber() {
+        System.setOut(new PrintStream(outContent));
+        Dec2Hex.main(new String[]{"255"});
+        assertTrue(outContent.toString().contains("Hexadecimal representation is: FF"));
+        System.setOut(originalOut);
     }
 }
