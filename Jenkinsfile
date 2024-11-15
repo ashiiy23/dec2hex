@@ -36,7 +36,7 @@ pipeline {
         
         stage('Run') {
             steps {
-                sh 'java Dec2Hex 15'
+                sh 'java Dec2Hex 14'
             }
         }
         

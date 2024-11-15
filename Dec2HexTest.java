@@ -11,8 +11,8 @@ public class Dec2HexTest {
     @Test
     public void testValidInput() {
         System.setOut(new PrintStream(outContent));
-        Dec2Hex.main(new String[]{"14"});
-        assertTrue(outContent.toString().contains("Hexadecimal representation is: E"));
+        Dec2Hex.main(new String[]{"15"});
+        assertTrue(outContent.toString().contains("Hexadecimal representation is: F"));
         System.setOut(originalOut);
     }
     
